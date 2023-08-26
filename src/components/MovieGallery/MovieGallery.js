@@ -2,10 +2,13 @@ import { MovieGalleryItem } from 'components/MovieGalleryItem.js/MovieGalleryIte
 
 export const MovieGallery = ({ movies }) => {
   return (
-    <ul>
-      {movies.map(movie => (
-        <MovieGalleryItem key={movie.id} title={movie.title} />
-      ))}
-    </ul>
+    <div>
+      <h1>Trending movies</h1>{' '}
+      <ul>
+        {movies.map(movie => (
+          <MovieGalleryItem key={movie.id} title={movie.title} id={movie.id} />
+        ))}
+      </ul>
+    </div>
   );
 };

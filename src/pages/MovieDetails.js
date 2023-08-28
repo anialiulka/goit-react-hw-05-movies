@@ -1,28 +1,23 @@
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { getMovieDetails } from 'API';
-import { Loader } from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   console.log(movieId);
-  const [isLoading, setIsLoading] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({});
   const [errorType, setErrorType] = useState(null);
   const location = useLocation();
   const backLinkHref = useRef(location.state?.from ?? '/products');
 
   useEffect(() => {
-    setIsLoading(true);
     getMovieDetails(movieId)
       .then(result => setSelectedMovie(result.data))
       .catch(error => {
         setErrorType(error);
         console.log(errorType);
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => {});
   }, [errorType, movieId]);
 
   const { poster_path, title, genres, overview, vote_average } = selectedMovie;

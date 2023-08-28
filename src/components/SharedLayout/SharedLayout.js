@@ -1,6 +1,8 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import css from './SharedLayout.module.css';
 import styled from 'styled-components';
+import { Suspense } from 'react';
+import { Loader } from 'components/Loader/Loader';
 
 const StyledLink = styled(NavLink)`
   font-size: 25px;
@@ -27,7 +29,9 @@ export const SharedLayout = () => {
         </StyledLink>
       </nav>
       <main className={css.container}>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );

@@ -1,7 +1,11 @@
 import { getTrendingMovies } from 'API';
 import { useEffect, useState } from 'react';
 import { Loader } from 'components/Loader/Loader';
-import { MovieGallery } from 'components/MovieGallery/MovieGallery';
+import { lazy } from 'react';
+
+const MovieGallery = lazy(() =>
+  import('../components/MovieGallery/MovieGallery')
+);
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);

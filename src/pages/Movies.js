@@ -1,8 +1,12 @@
 import { useSearchParams } from 'react-router-dom';
 import { searchMovieByKeywords } from 'API';
 import { useEffect, useState } from 'react';
-import { MovieGalleryItem } from 'components/MovieGalleryItem.js/MovieGalleryItem';
 import css from './Movies.module.css';
+import { lazy } from 'react';
+
+const MovieGalleryItem = lazy(() =>
+  import('../components/MovieGalleryItem/MovieGalleryItem')
+);
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,9 +28,6 @@ const Movies = () => {
         });
     }
   }, [movie]);
-
-  console.log(movie);
-  console.log(searchedMovie);
 
   const updateQueryString = e => {
     if (e.target.value === '') {

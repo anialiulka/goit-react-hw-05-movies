@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import css from './MovieGalleryItem.module.css';
-export const MovieGalleryItem = ({ title, id }) => {
+import PropTypes from 'prop-types';
+
+const MovieGalleryItem = ({ title, id }) => {
   const location = useLocation();
 
   return (
@@ -15,4 +17,11 @@ export const MovieGalleryItem = ({ title, id }) => {
       ;
     </li>
   );
+};
+
+export default MovieGalleryItem;
+
+MovieGalleryItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };

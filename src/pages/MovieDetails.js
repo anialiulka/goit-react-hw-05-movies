@@ -9,6 +9,8 @@ import { useState, useEffect, useRef } from 'react';
 import { getMovieDetails } from 'API';
 import css from './Moviedetails.module.css';
 import styled from 'styled-components';
+import { Suspense } from 'react';
+import { Loader } from 'components/Loader/Loader';
 
 import { BsArrowLeft } from 'react-icons/bs';
 
@@ -28,7 +30,6 @@ const StyledLink = styled(NavLink)`
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  console.log(movieId);
   const [selectedMovie, setSelectedMovie] = useState({});
   const [errorType, setErrorType] = useState(null);
   const location = useLocation();
@@ -46,7 +47,6 @@ const MovieDetails = () => {
 
   const { poster_path, title, genres, overview, vote_average } = selectedMovie;
   const rating = (vote_average * 100).toString().slice(0, 2);
-  console.log(rating);
 
   return (
     selectedMovie.title && (
@@ -92,7 +92,9 @@ const MovieDetails = () => {
             </li>
           </ul>
         </div>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </div>
     )
   );

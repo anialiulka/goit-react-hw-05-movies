@@ -52,8 +52,8 @@ const MovieDetails = () => {
     selectedMovie.title && (
       <div>
         <div className={css.headingBlock}>
-          <BsArrowLeft className={css.arrow} />
           <Link to={backLinkHref.current} className={css.heading}>
+            <BsArrowLeft className={css.arrow} />
             Back to Trending Movies
           </Link>
         </div>

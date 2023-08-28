@@ -1,6 +1,30 @@
-import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import {
+  useParams,
+  NavLink,
+  Link,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { getMovieDetails } from 'API';
+import css from './Moviedetails.module.css';
+import styled from 'styled-components';
+
+import { BsArrowLeft } from 'react-icons/bs';
+
+const StyledLink = styled(NavLink)`
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #f20089, #8367c7);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  &.active {
+    color: #f20089;
+  }
+`;
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -27,31 +51,44 @@ const MovieDetails = () => {
   return (
     selectedMovie.title && (
       <div>
-        <div>
-          <Link to={backLinkHref.current}>Back to Trending Movies</Link>
+        <div className={css.headingBlock}>
+          <BsArrowLeft className={css.arrow} />
+          <Link to={backLinkHref.current} className={css.heading}>
+            Back to Trending Movies
+          </Link>
         </div>
-        <div>
+        <div className={css.movieBlock}>
           <img
             src={`https://image.tmdb.org/t/p/w200${poster_path}`}
             alt={`poster for ${title}`}
           />
-          <h2>{title}</h2>
-          <p>Positive reviews: {rating}%</p>
-          <h3>Overview</h3>
-          <p>{overview}</p>
-          <h3>Genres</h3>
-          {genres.map(genre => (
-            <p key={genre.id}>{genre.name}</p>
-          ))}
+          <div>
+            <h2 className={css.movieTitle}>{title}</h2>
+            <p className={css.movieText}>Positive reviews: {rating}%</p>
+            <h3 className={css.movieSubtitle}>Overview</h3>
+            <p className={css.movieText}>{overview}</p>
+            <h3 className={css.movieSubtitle}>Genres</h3>
+            <div className={css.genresBlock}>
+              {genres.map(genre => (
+                <p key={genre.id} className={css.movieGenre}>
+                  {genre.name}
+                </p>
+              ))}
+            </div>
+          </div>
         </div>
         <div>
-          <h2>Additional Information</h2>
-          <ul>
-            <li>
-              <Link to="cast">Cast</Link>
+          <h2 className={css.heading}>Additional Information</h2>
+          <ul className={css.list}>
+            <li className={css.movieSubtitle}>
+              <StyledLink to="cast" className={css.movieTitle}>
+                Cast
+              </StyledLink>
             </li>
-            <li>
-              <Link to="reviews">Reviews</Link>
+            <li className={css.movieSubtitle}>
+              <StyledLink to="reviews" className={css.movieTitle}>
+                Reviews
+              </StyledLink>
             </li>
           </ul>
         </div>

@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { getMoreInformation } from 'API';
 import { useState, useEffect } from 'react';
+import css from './Reviews.module.css';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -22,15 +23,27 @@ const Reviews = () => {
 
   return (
     <div>
-      {selectedMovieReviews.length > 0 &&
+      {selectedMovieReviews.length > 0 ? (
         selectedMovieReviews.map(({ author_details, content, created_at }) => (
-          <div key={author_details.username}>
-            <p>Name: {author_details.name}</p>
-            <p>Rating: {author_details.rating}</p>
-            <p>Review: {content}</p>
-            <p>Created at: {created_at}</p>
+          <div key={author_details.username} className={css.reviewsBlock}>
+            <p className={css.heading}>
+              Name: <span className={css.content}>{author_details.name}</span>
+            </p>
+            <p className={css.heading}>
+              Rating:{' '}
+              <span className={css.content}> {author_details.rating}</span>
+            </p>
+            <p className={css.heading}>
+              Review: <span className={css.content}> {content}</span>
+            </p>
+            <p className={css.heading}>
+              Created at:<span className={css.content}> {created_at}</span>
+            </p>
           </div>
-        ))}
+        ))
+      ) : (
+        <p>Reviews not found.</p>
+      )}
     </div>
   );
 };

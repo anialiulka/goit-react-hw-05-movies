@@ -2,11 +2,13 @@ import { useSearchParams } from 'react-router-dom';
 import { searchMovieByKeywords } from 'API';
 import { useEffect, useState } from 'react';
 import { MovieGalleryItem } from 'components/MovieGalleryItem.js/MovieGalleryItem';
+import css from './Movies.module.css';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const movie = searchParams.get('query') ?? '';
   const [searchedMovie, setSearchedMovie] = useState([]);
+  const fromTheSearchPage = searchParams.has('movies');
 
   useEffect(() => {
     if (movie === '') {
@@ -36,8 +38,13 @@ const Movies = () => {
 
   return (
     <div>
-      <h1>Movie Search</h1>
-      <input type="text" value={movie} onChange={updateQueryString} />
+      <h1 className={css.heading}>Movie Search</h1>
+      <input
+        type="text"
+        value={movie}
+        onChange={updateQueryString}
+        className={css.input}
+      />
 
       {searchedMovie && searchedMovie.length > 0 && (
         <ul>
@@ -46,6 +53,7 @@ const Movies = () => {
               key={movie.id}
               title={movie.title}
               id={movie.id}
+              searchSection={fromTheSearchPage}
             />
           ))}
         </ul>

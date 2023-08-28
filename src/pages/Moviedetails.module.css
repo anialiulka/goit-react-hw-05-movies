@@ -1,0 +1,71 @@
+.headingBlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.heading {
+  display: block;
+  color: #7e4a9e;
+  text-decoration: none;
+}
+
+.movieBlock {
+  width: 70%;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.movieTitle {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #f20089, #8367c7);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.movieText {
+  font-weight: 600;
+  background-image: linear-gradient(to left, #5a055a, #2b1d4f);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.movieSubtitle {
+  font-size: 18px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #f20089, #8367c7);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.genresBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.movieGenre {
+  margin: 0;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #5a055a, #2b1d4f);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.list {
+  list-style: none;
+}
+
+.arrow {
+  fill: purple;
+}

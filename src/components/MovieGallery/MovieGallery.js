@@ -1,5 +1,6 @@
 import { MovieGalleryItem } from 'components/MovieGalleryItem.js/MovieGalleryItem';
 import css from './MovieGallery.module.css';
+import { useSearchParams } from 'react-router-dom';
 
 export const MovieGallery = ({ movies }) => {
   return (

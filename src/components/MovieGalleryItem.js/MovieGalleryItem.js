@@ -5,7 +5,11 @@ export const MovieGalleryItem = ({ title, id }) => {
 
   return (
     <li className={css.listItem}>
-      <Link to={`movies/${id}`} state={{ from: location }} className={css.link}>
+      <Link
+        to={`/movies/${id}`}
+        state={{ from: location }}
+        className={css.link}
+      >
         {title}
       </Link>
       ;

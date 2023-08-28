@@ -1,5 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import { getMovieDetails } from 'API';
 import { Loader } from 'components/Loader/Loader';
 
@@ -9,6 +9,8 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({});
   const [errorType, setErrorType] = useState(null);
+  const location = useLocation();
+  const backLinkHref = useRef(location.state?.from ?? '/products');
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,8 +25,6 @@ const MovieDetails = () => {
       });
   }, [errorType, movieId]);
 
-  console.log(selectedMovie);
-
   const { poster_path, title, genres, overview, vote_average } = selectedMovie;
   const rating = (vote_average * 100).toString().slice(0, 2);
   console.log(rating);
@@ -32,6 +32,9 @@ const MovieDetails = () => {
   return (
     selectedMovie.title && (
       <div>
+        <div>
+          <Link to={backLinkHref.current}>Back to Trending Movies</Link>
+        </div>
         <div>
           <img
             src={`https://image.tmdb.org/t/p/w200${poster_path}`}
@@ -57,6 +60,7 @@ const MovieDetails = () => {
             </li>
           </ul>
         </div>
+        <Outlet />
       </div>
     )
   );

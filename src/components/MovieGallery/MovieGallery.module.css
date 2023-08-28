@@ -1,0 +1,17 @@
+.heading {
+  padding: 10px;
+  margin: 0;
+  font-size: 60px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #f20089, #8367c7);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  list-style: none;
+}

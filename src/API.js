@@ -34,3 +34,39 @@ export const getMovieDetails = async movieId => {
     throw error;
   }
 };
+
+export const getMoreInformation = async (movieId, infotype) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}3/movie/${movieId}/${infotype}`,
+      {
+        params: {
+          api_key: API_KEY,
+          language: 'en-US',
+        },
+      }
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const searchMovieByKeywords = async movieKeyword => {
+  try {
+    const response = await axios.get(`${BASE_URL}3/search/movie`, {
+      params: {
+        api_key: API_KEY,
+        language: 'en-US',
+        query: movieKeyword,
+      },
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

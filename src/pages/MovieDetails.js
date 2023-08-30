@@ -33,7 +33,7 @@ const MovieDetails = () => {
   const [selectedMovie, setSelectedMovie] = useState({});
   const [errorType, setErrorType] = useState(null);
   const location = useLocation();
-  const backLinkHref = useRef(location.state?.from ?? '/products');
+  const backLinkHref = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     getMovieDetails(movieId)
